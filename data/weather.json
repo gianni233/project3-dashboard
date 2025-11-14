@@ -4,5 +4,7 @@
   "condition": "Partly Cloudy",
   "icon": "⛅",
   "humidity": 75,
-  "windSpeed": 10
+  "windSpeed": 10,
+  "feelsLike": 74
 }
+
