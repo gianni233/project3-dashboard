@@ -1,47 +1,61 @@
-# GIANNI HENRY - Web Development Portfolio
+# Personal Dashboard
 
-**Course:** WRIT 40363 - Introduction to Web Applications
-**Semester:** Fall 2025
-**Institution:** Texas Christian University
+A responsive personal dashboard featuring weather, daily quotes, and task management.
 
-## About This Portfolio
+## Features
 
-This repository contains my web development projects from WRIT 40363. The main portfolio site showcases my work and growth as a web developer.
-
-**Live Portfolio:** [https://github.com/gianni233/project3-dashboard/](https://yourusername.github.io/writ40363-portfolio-yourname/)
-
-## Repository Structure
-
-### Main Portfolio (Root)
-The root directory contains my enhanced portfolio website, which I continue to develop throughout the semester.
-
-### Archived Projects
-
-Individual course projects are preserved in the `projects/` directory:
-
-- **[Project 1: Personal Portfolio](projects/project1-original/)** - Original portfolio submission featuring HTML and CSS fundamentals
-- **[Project 2: Local Favorites Tracker](projects/project2-tracker/)** - Interactive application using JavaScript, DOM manipulation, and localStorage
-- **[Project 3: Personal Data Dashboard](projects/project3-dashboard/)** - Coming soon!
+- **Weather Widget**: Displays current weather conditions
+- **Daily Quotes**: Random inspirational quotes with refresh button
+- **Task Manager**: Add, complete, and delete personal tasks
+- **Dark/Light Theme**: Toggle between themes with persistence
+- **Responsive Design**: Works on mobile, tablet, and desktop
+- **Data Persistence**: Tasks and theme preferences saved locally
 
 ## Technologies Used
 
 - HTML5
-- CSS3 (Flexbox, Grid, responsive design)
+- CSS3 (Grid, Flexbox, Custom Properties)
 - JavaScript (ES6+)
-- Git & GitHub
-- GitHub Pages
+- fetch() API
+- localStorage
 
-## Development Tools
+## Live Demo
 
-- VS Code
-- GitHub Desktop
-- Live Server extension
+🔗 [View Live Dashboard](https://your-username.github.io/your-repo-name/)
 
-## Contact
+## Setup
 
-- **GitHub:** [https://github.com/gianni233]
-- **Email:** henrygiannim1@gmail.com
+1. Clone the repository
+2. Open `index.html` in a web browser (use Live Server for development)
+3. Customize `data/weather.json` and `data/quotes.json` with your own data
 
----
+## Project Structure
 
-*This portfolio demonstrates my learning journey in web development.*
+\```
+project3-dashboard/
+├── index.html          # Main HTML file
+├── css/
+│   └── styles.css      # All styles including themes
+├── js/
+│   └── app.js          # All JavaScript functionality
+├── data/
+│   ├── weather.json    # Weather data
+│   └── quotes.json     # Quotes collection
+└── README.md           # This file
+\```
+
+## Future Enhancements
+
+- Real weather API integration
+- Quote categories and filtering
+- Task categories and priorities
+- Export/import tasks feature
+- Additional widgets
+
+## Author
+
+[Your Name]
+
+## License
+
+MIT License

@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>My Personal Dashboard</h1>
-  </header>
-
-  <div class="dashboard">
-    <!-- all widget sections live here -->
+<header class="dashboard-header">
+  <div class="header-content">
+    <div>
+      <h1>My Personal Dashboard</h1>
+      <p class="dashboard-subtitle">Welcome back! Here's your day at a glance.</p>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
   </div>
-</body>
-
+</header>
         <main class="widgets-container">
             <!-- Weather Widget -->
             <section class="widget weather-widget">
@@ -31,7 +33,7 @@
 </body>
 </html>
 
-<div class="widget quotes-widget">
+<div class="widget quotes-widget"> 
   <h2>Daily Inspiration</h2>
   <div id="quotes-display">
     <!-- Quote will appear here -->
