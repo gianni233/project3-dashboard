@@ -21,7 +21,7 @@ A responsive personal dashboard featuring weather, daily quotes, and task manage
 
 ## Live Demo
 
-🔗 [View Live Dashboard](https://your-username.github.io/your-repo-name/)
+🔗 [View Live Dashboard](https://gianni233.github.io/project3-dashboard/)
 
 ## Setup
 
@@ -54,7 +54,7 @@ project3-dashboard/
 
 ## Author
 
-[Your Name]
+[Gianni Henry]
 
 ## License
 
