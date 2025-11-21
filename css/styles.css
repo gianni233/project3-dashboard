@@ -357,17 +357,32 @@ header h1 {
 
 .btn-delete {
   padding: 6px 12px;
-  background: var(--color-bg-light);
-  color: white;
+  background: var(--color-error);           
+  color: white;                      
   border: none;
   border-radius: 4px;
   font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-delete:hover {
-  background: var(--color-bg-light);
+  background: var(--color-error);              
+  transform: scale(1.05);           
+}
+
+.btn-delete:active {
+  transform: scale(0.95);          
+}
+
+body.theme-dark .btn-delete {
+  background: var(--color-error-border);     
+  color: var(--color-error-bg);                    
+}
+
+body.theme-dark .btn-delete:hover {
+  background: var(--color-error-bg);
 }
 
 .no-tasks {
