@@ -5,6 +5,14 @@
   "icon": "⛅",
   "humidity": 75,
   "windSpeed": 10,
-  "feelsLike": 74
+  "feelsLike": 74,
+  "forecast": [
+    {
+      "day": "Tomorrow",
+      "high": 75,
+      "low": 58,
+      "condition": "Sunny",
+      "icon": "☀️"
+    }
+  ]
 }
-

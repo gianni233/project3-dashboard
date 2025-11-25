@@ -13,6 +13,10 @@
                 <h1>My Personal Dashboard</h1>
                 <p class="dashboard-subtitle">Welcome back! Here's your day at a glance.</p>
             </div>
+
+            <!-- Date / Time -->
+            <div id="datetime" class="header-datetime" aria-live="polite">Loading date/time...</div>
+
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
                 <span class="theme-icon">🌙</span>
             </button>
@@ -23,7 +27,8 @@
         <!-- Weather Widget -->
         <section class="widget weather-widget">
             <h2>Current Weather</h2>
-            <div id="weather-display">
+            <div id="weather-display" aria-live="polite">
+                <!-- current weather and 3-day forecast will be rendered here -->
                 Loading weather data...
             </div>
         </section>

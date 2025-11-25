@@ -26,38 +26,103 @@ function loadWeather() {
 }
 
 
-// Function to display weather data in the DOM
+// Function to display weather data in the DOM (updated to include 3-day forecast)
 function displayWeather(weather) {
     console.log('📊 Displaying weather data...');
 
     const weatherDisplay = document.getElementById('weather-display');
 
-    weatherDisplay.innerHTML = `
+    // Build current weather section 
+    const icon = weather.icon || '🌤️';
+    const temp = (weather.temperature !== undefined) ? `${weather.temperature}°F` : '—';
+    const location = weather.location || weather.city || 'Unknown location';
+    const condition = weather.condition || '';
+
+    // Additional details
+    const humidity = (weather.humidity !== undefined) ? `${weather.humidity}%` : '—';
+    const wind = (weather.windSpeed !== undefined) ? `${weather.windSpeed} mph` : '—';
+    const feelsLike = (weather.feelsLike !== undefined) ? `${weather.feelsLike}°F` : '—';
+
+    // Current weather HTML (added emojis for details)
+    let html = `
         <div class="weather-current">
-            <div class="weather-icon">${weather.icon}</div>
-            <div class="weather-temp">${weather.temperature}°F</div>
-            <div class="weather-location">${weather.location}</div>
-            <div class="weather-condition">${weather.condition}</div>
+            <div class="weather-icon">${icon}</div>
+            <div class="weather-temp">${temp}</div>
+            <div class="weather-location">${location}</div>
+            <div class="weather-condition">${condition}</div>
         </div>
-        <div class="weather-details">
+
+        <div class="weather-details" aria-label="current weather details">
             <div class="weather-detail">
                 <span>💧 Humidity</span>
-                <strong>${weather.humidity}%</strong>
+                <strong>${humidity}</strong>
             </div>
             <div class="weather-detail">
-                <span>💨 Wind Speed</span>
-                <strong>${weather.windSpeed} mph</strong>
+                <span>🌬️ Wind</span>
+                <strong>${wind}</strong>
             </div>
             <div class="weather-detail">
-                <span>🌡️ Feels Like</span>
-                <strong>${weather.feelsLike}°F</strong>
+                <span>🌡️ Feels like</span>
+                <strong>${feelsLike}</strong>
             </div>
         </div>
     `;
 
+    // Build forecast if available (expecting an array at weather.forecast)
+    if (Array.isArray(weather.forecast) && weather.forecast.length > 0) {
+        const forecastDays = weather.forecast.slice(0, 3);
+        html += `<div class="weather-forecast" aria-label="3 day forecast">`;
+
+        forecastDays.forEach(day => {
+            const dateVal = day.date || day.day || day.dt || null;
+            const dayLabel = formatForecastDay(dateVal);
+            const dayIcon = day.icon || day.weatherIcon || '⛅';
+            const high = (day.high !== undefined) ? `${day.high}°H` : (day.tempHigh !== undefined ? `${day.tempHigh}°` : '—');
+            const low = (day.low !== undefined) ? `${day.low}°L` : (day.tempLow !== undefined ? `${day.tempLow}°` : '—');
+            const cond = day.condition || day.summary || '';
+
+            html += `
+                <div class="forecast-day">
+                    <div class="forecast-day-label">${dayLabel}</div>
+                    <div class="forecast-day-icon">${dayIcon}</div>
+                    <div class="forecast-day-temp">
+                        <span class="temp-high">${high}</span>
+                        <span class="temp-low">${low}</span>
+                    </div>
+                    <div class="forecast-day-cond">${cond}</div>
+                </div>
+            `;
+        });
+
+        html += `</div>`;
+    } else {
+        html += `<div class="forecast-empty">3-day forecast not available</div>`;
+    }
+
+    weatherDisplay.innerHTML = html;
+
     console.log('✅ Weather displayed successfully!');
 }
 
+// Helper: turns a date string / timestamp / label into a short weekday (Mon, Tue, etc.)
+function formatForecastDay(dateVal) {
+    if (!dateVal) return 'N/A';
+    // If it's already a short label like "Tue", return it
+    if (typeof dateVal === 'string' && /^[A-Za-z]{3,}$/.test(dateVal)) return dateVal;
+    // If it's a numeric unix timestamp (seconds)
+    if (typeof dateVal === 'number') {
+        // if looks like seconds (10 digits) vs ms (13 digits)
+        const ts = (dateVal < 1e12) ? dateVal * 1000 : dateVal;
+        return new Date(ts).toLocaleDateString(undefined, { weekday: 'short' });
+    }
+    // Try to parse string date
+    const parsed = Date.parse(dateVal);
+    if (!isNaN(parsed)) {
+        return new Date(parsed).toLocaleDateString(undefined, { weekday: 'short' });
+    }
+    // fallback to the raw value truncated
+    return String(dateVal).slice(0, 10);
+}
 
 // Function to show error message if weather data fails to load
 function displayWeatherError() {
@@ -120,7 +185,7 @@ function displayRandomQuote() {
   // Display the quote
   const quotesDisplay = document.getElementById('quotes-display');
   quotesDisplay.innerHTML = `
-    <div class="quote-card">
+    <div class="quote-card"> 
       <div class="quote-text">"${quote.text}"</div>
       <div class="quote-author">— ${quote.author}</div>
     </div>
@@ -354,3 +419,32 @@ function setupThemeToggle() {
 // Call these when page loads
 initializeTheme();
 setupThemeToggle();
+
+// Date / Time display
+function updateDateTime() {
+  const el = document.getElementById('datetime');
+  if (!el) return;
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString(undefined, {
+    weekday: 'long',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+  const timeStr = now.toLocaleTimeString(undefined, {
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit'
+  });
+
+  el.textContent = `${dateStr} • ${timeStr}`;
+}
+
+function setupDateTime(intervalMs = 1000) {
+  updateDateTime();
+  setInterval(updateDateTime, intervalMs);
+}
+
+// Call date/time setup when page loads
+setupDateTime();
