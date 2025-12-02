@@ -7,12 +7,8 @@
   "windSpeed": 10,
   "feelsLike": 74,
   "forecast": [
-    {
-      "day": "Tomorrow",
-      "high": 75,
-      "low": 58,
-      "condition": "Sunny",
-      "icon": "☀️"
-    }
+    { "day": "Tomorrow", "high": 75, "low": 58, "icon": "☀️", "condition": "Sunny" },
+    { "day": "Wed", "high": 78, "low": 60, "icon": "⛅", "condition": "Partly Cloudy" },
+    { "day": "Thu", "high": 72, "low": 55, "icon": "🌧️", "condition": "Showers" }
   ]
 }
